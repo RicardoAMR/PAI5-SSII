@@ -1,6 +1,7 @@
 import socket
 import ssl
 from datetime import datetime
+import time
 
 #server
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
@@ -14,9 +15,9 @@ for line in file:
     config.append(words[1])
 num_pruebas = config[0]
 file.close()
+m=0
 
-
-while True:
+while m<1244:
     cont = 0
     archivo = "./log/" + str(datetime.now().strftime('%Y_%m'))
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
@@ -29,24 +30,23 @@ while True:
                 data = conn.recv(1024)
                 p = data.decode()
                 print(p)
+                file.write("Dia " + str(datetime.now().strftime('%d')) + " Hora " + str(datetime.now(
+                        ).strftime('%H:%M')) + ": ACIERTO - La verificación se ha realizado correctamnte\n")
+                
+    time.sleep(0)
+    despues = "./log/" + str(datetime.now().strftime('%Y_%m'))
+    if despues != archivo:
+        file = open(archivo + ".txt", "r")
+        cont = 0
+        cont1 = len(file)
+        for line in file:
+            line = line.strip()
+            words = line.split(" ")
+            for word in words:
+                if word == 'ACIERTO':
+                    cont = cont + 1
 
-    """#########################"""
-    """# CÓDIGO PARA MODIFICAR #"""
-    """#########################"""
-    file = open(archivo + ".txt", "r")
-    cont = 0
-    cont1 = 0
-    for line in file:
-        line = line.strip()
-        words = line.split(" ")
-        for word in words:
-            if word == 'FALLOMANMIDDLE':
-                cont = cont + 1
-            elif word == 'FALLOREPLAY':
-                cont1 +=1
-
-    file.close()
-    file = open(archivo + ".txt", "a")
-    file.write("Han ocurrido un total de " + str(cont) + " fallos de man in the middle\n")
-    file.write("Han ocurrido un total de " + str(cont1) + " fallos de replay\n")
-    file.close()
+        file.close()
+        file = open(archivo + ".txt", "a")
+        file.write("Hay un ratio de acierto de "+cont/cont1)
+        file.close()
