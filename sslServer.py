@@ -15,10 +15,9 @@ for line in file:
     config.append(words[1])
 num_pruebas = config[0]
 file.close()
-m=0
 
 archivo = "./log/" + str(datetime.now().strftime('%Y_%m'))
-while m<1244:
+while True:
     cont = 0
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
         sock.bind(('127.0.0.1', 8443))
@@ -32,6 +31,7 @@ while m<1244:
                 print(p)
                 file.write("Dia " + str(datetime.now().strftime('%d')) + " Hora " + str(datetime.now(
                         ).strftime('%H:%M')) + ": ACIERTO - La verificación se ha realizado correctamnte\n")
+                file.open()
                 
     time.sleep(0)
     despues = "./log/" + str(datetime.now().strftime('%Y_%m'))
