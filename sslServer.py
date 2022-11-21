@@ -17,11 +17,11 @@ num_pruebas = config[0]
 file.close()
 m=0
 
+archivo = "./log/" + str(datetime.now().strftime('%Y_%m'))
 while m<1244:
     cont = 0
-    archivo = "./log/" + str(datetime.now().strftime('%Y_%m'))
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
-        sock.bind(('192.168.40.179', 8443))
+        sock.bind(('127.0.0.1', 8443))
         #for i in range(int(num_pruebas)):
         sock.listen(2100)
         with context.wrap_socket(sock, server_side=True) as ssock:
@@ -50,3 +50,4 @@ while m<1244:
         file = open(archivo + ".txt", "a")
         file.write("Hay un ratio de acierto de "+cont/cont1)
         file.close()
+        archivo = despues
