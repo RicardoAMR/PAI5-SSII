@@ -2,6 +2,7 @@ import socket
 import ssl
 from datetime import datetime
 import time
+from dfva_python.client import Client
 
 #server
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
@@ -16,6 +17,12 @@ for line in file:
 num_pruebas = config[0]
 file.close()
 
+def verificacion(datos):
+    client = Client()
+    sign_resp=client.sign( '04-0212-0119', DOCUMENT.encode(), "resumen ejemplo", _format='xml_cofirma')
+    client.sign_check(sign_resp['id_transaction'])
+    return datos
+
 archivo = "./log/" + str(datetime.now().strftime('%Y_%m'))
 while True:
     cont = 0
@@ -29,9 +36,17 @@ while True:
                 data = conn.recv(1024)
                 p = data.decode()
                 print(p)
-                file.write("Dia " + str(datetime.now().strftime('%d')) + " Hora " + str(datetime.now(
+                almac = open("almacenaje.txt", "a")
+                almac.write(str(p)+"\n")
+                almac.close()
+                file = open(archivo + ".txt", "r")
+                if (verificacion(p.split(" ")[2])):
+                    file.write("Dia " + str(datetime.now().strftime('%d')) + " Hora " + str(datetime.now(
                         ).strftime('%H:%M')) + ": ACIERTO - La verificación se ha realizado correctamnte\n")
-                file.open()
+                else:
+                    file.write("Dia " + str(datetime.now().strftime('%d')) + " Hora " + str(datetime.now(
+                        ).strftime('%H:%M')) + ": FALLO - La verificación ha fallado\n")
+                file.close()
                 
     time.sleep(0)
     despues = "./log/" + str(datetime.now().strftime('%Y_%m'))
