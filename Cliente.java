@@ -1,5 +1,9 @@
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PublicKey;
+import java.security.Signature;
 
 public class Cliente extends Conexion {
     public Cliente() throws IOException {
@@ -11,12 +15,18 @@ public class Cliente extends Conexion {
         try {
             // Flujo de datos hacia el servidor
             salidaServidor = new DataOutputStream(cs.getOutputStream());
-
-            // Se enviarán dos mensajes
-            for (int i = 0; i < 2; i++) {
-                // Se escribe en el servidor usando su flujo de datos
-                salidaServidor.writeUTF("Este es el mensaje numero " + (i + 1) + "\n");
-            }
+            KeyPairGenerator kgen = KeyPairGenerator.getInstance("RSA");
+            kgen.initialize(2048);
+            KeyPair keys = kgen.generateKeyPair();
+            PublicKey clavePublica = keys.getPublic();
+            String prueba = "fadsfdasfasfdsadsada";
+            Signature sg = Signature.getInstance("SHA256withRSA");
+            sg.initSign(keys.getPrivate());
+            sg.update(prueba.getBytes());
+            // Firma
+            byte[] firma = sg.sign();
+            // Se enviará la firma, clave pública
+            salidaServidor.writeBytes(prueba + "|" + "IDempleado" + "|" + firma + "|" + clavePublica.toString());
 
             cs.close();// Fin de la conexión
 
