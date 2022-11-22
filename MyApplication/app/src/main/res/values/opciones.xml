@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="combo_empleados">
+        <item>Seleccione empleado:</item>
+        <item>Daniel Vega</item>
+        <item>Ismael Mesa</item>
+        <item>Ricardo Andrés</item>
+
+    </string-array>
+    
+</resources>

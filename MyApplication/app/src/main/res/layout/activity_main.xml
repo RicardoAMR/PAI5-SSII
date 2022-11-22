@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     tools:context="com.example.myapplication.MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Hospital Warehouse APP - ST12"
+        android:textColor="#C8FF0000"
+        android:textSize="20sp"
+        tools:text="Hospital Warehouse APP - ST12" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:id="@+id/button_send"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="35dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox_camas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="41dp"
+        android:checked="false"
+        android:text="Camas" />
+
+    <CheckBox
+        android:id="@+id/checkBox_mesas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="82dp"
+        android:checked="false"
+        android:text="Mesas" />
+
+    <CheckBox
+        android:id="@+id/checkBox_sillas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="123dp"
+        android:checked="false"
+        android:text="Sillas" />
+
+    <CheckBox
+        android:id="@+id/checkBox_sillones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="164dp"
+        android:checked="false"
+        android:text="Sillones" />
+
+    <Spinner
+        android:id="@+id/idSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="205dp" />
+
+    <EditText
+        android:id="@+id/editTextNumberCamas"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@id/checkBox_camas"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextNumberMesas"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="71dp"
+        android:layout_alignLeft="@id/checkBox_mesas"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextNumberSillas"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="112dp"
+        android:layout_alignLeft="@id/checkBox_sillas"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextNumberSillones"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="153dp"
+        android:layout_alignLeft="@id/checkBox_sillones"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/cantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="40dp"
+        android:text="Cantidad" />
+
+</RelativeLayout>
