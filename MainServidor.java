@@ -83,7 +83,7 @@ public class MainServidor {
                         // si append == true  escribe al final del fichero
                         // si append == false sobrescribe el fichero
                         boolean append = true;
-                        fichero = new PrintWriter(new FileWriter("log" + mes + ".txt", append));
+                        fichero = new PrintWriter(new FileWriter("./log/log" + mes + ".txt", append));
                         if (sn) {
                             fichero.println("ACIERTO - No hay error de firma");
                         } else {
@@ -109,7 +109,7 @@ public class MainServidor {
                         // Se calcula la proporci贸n de error al cambiar de mes
                         BufferedReader calculo = null;
                         try{
-                            calculo = new BufferedReader(new FileReader("log" + mes + ".txt"));
+                            calculo = new BufferedReader(new FileReader("./log/log" + mes + ".txt"));
                             String linea = calculo.readLine();
                             while (linea != null) {
                                 total.add(linea);
@@ -138,7 +138,7 @@ public class MainServidor {
                             // si append == true  escribe al final del fichero
                             // si append == false sobrescribe el fichero
                             boolean append = true;
-                            registro = new PrintWriter(new FileWriter("log" + mes + ".txt", append));
+                            registro = new PrintWriter(new FileWriter("./log/log" + mes + ".txt", append));
                             registro.println("Hay una proporci贸n de aciertos de " + resultado);
                             proporciones.add(resultado);
                         } catch (Exception e) {
