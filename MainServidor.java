@@ -33,36 +33,33 @@ public class MainServidor {
     }
 
     public Boolean verificacionFirma(String firma, byte[] clavePublica, String mensaje) 
-    throws SignatureException, InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException{                                 
-    Signature sg = Signature.getInstance("SHA256withRSA");
-    X509EncodedKeySpec keySpec = new X509EncodedKeySpec(clavePublica);                    
-    KeyFactory keyFactory = KeyFactory.getInstance("RSA");                
-    RSAPublicKey pubKey = (RSAPublicKey) keyFactory.generatePublic(keySpec);              
-    sg.initVerify(pubKey);
-    //Se modifica artificialmente el mensaje
-    double n = 6;
-    if((int)(Math.random()*10+1) < n){
-     mensaje = "mensaje para que salga False";
-    }
-    sg.update(mensaje.getBytes());
-    // Verification de firma
-    boolean t = sg.verify(Base64.getDecoder().decode(firma));
-    System.out.println(t);
-    return t;
+            throws SignatureException, InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException{                                 
+        Signature sg = Signature.getInstance("SHA256withRSA");
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(clavePublica);                    
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");                
+        RSAPublicKey pubKey = (RSAPublicKey) keyFactory.generatePublic(keySpec);              
+        sg.initVerify(pubKey);
+        //Se modifica artificialmente el mensaje
+        double n = 6;
+        if((int)(Math.random()*10+1) < n){
+        mensaje = "Vega ha modificado el mensaje (VEGA ESO NO SE HACE   D:<   )";
+        }
+        sg.update(mensaje.getBytes());
+        // Verification de firma
+        boolean t = sg.verify(Base64.getDecoder().decode(firma));
+        System.out.println(t);
+        return t;
 }
 
     // Ejecución del servidor para escuchar peticiones de los clientes
     private boolean runServer() {
         List<Double> proporciones = new ArrayList<>();
-
         while (true) {
-            
             try {
                 System.err.println("Esperando conexiones de clientes...");
                 Socket socket = (Socket) serverSocket.accept();
                 BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 //PrintWriter output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-                proporciones = new ArrayList<>();
                 String p = input.readLine();
                 boolean c=true;
                 while (c) {  
@@ -86,7 +83,7 @@ public class MainServidor {
                         // si append == true  escribe al final del fichero
                         // si append == false sobrescribe el fichero
                         boolean append = true;
-                        fichero = new PrintWriter(new FileWriter("./log/log" + mes + ".txt", append));
+                        fichero = new PrintWriter(new FileWriter("log" + mes + ".txt", append));
                         if (sn) {
                             fichero.println("ACIERTO - No hay error de firma");
                         } else {
@@ -112,7 +109,7 @@ public class MainServidor {
                         // Se calcula la proporci贸n de error al cambiar de mes
                         BufferedReader calculo = null;
                         try{
-                            calculo = new BufferedReader(new FileReader("./log/log" + mes + ".txt"));
+                            calculo = new BufferedReader(new FileReader("log" + mes + ".txt"));
                             String linea = calculo.readLine();
                             while (linea != null) {
                                 total.add(linea);
@@ -141,7 +138,7 @@ public class MainServidor {
                             // si append == true  escribe al final del fichero
                             // si append == false sobrescribe el fichero
                             boolean append = true;
-                            registro = new PrintWriter(new FileWriter("./log/log" + mes + ".txt", append));
+                            registro = new PrintWriter(new FileWriter("log" + mes + ".txt", append));
                             registro.println("Hay una proporci贸n de aciertos de " + resultado);
                             proporciones.add(resultado);
                         } catch (Exception e) {
