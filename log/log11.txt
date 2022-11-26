@@ -1,0 +1,6 @@
+ACIERTO - No hay error de firma
+FALLO - Hay error de firma
+FALLO - Hay error de firma
+ACIERTO - No hay error de firma
+ACIERTO - No hay error de firma
+Hay una proporci贸n de aciertos de 0.6
